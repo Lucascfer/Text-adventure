@@ -5,12 +5,10 @@ import Interludio from "./Interludio.js";
 // Dia que o jogador vai escolher fazer as provas de agua e terra
 export default async (jogador) => {
   const { agua, terra, Prova } = useMontarProvas();
-  console.clear();
 
   await digitarMensagem(
     `Depois de um primeiro dia emocionante na Academia de Magia, ${jogador.nome} é convocado para sua primeira prova. O Mestre dos Elementos, Gandor, é um feiticeiro experiente e vai guiar você neste dia`
   );
-  continuarTexto();
 
   const provas = {
     agua: new Prova(agua),

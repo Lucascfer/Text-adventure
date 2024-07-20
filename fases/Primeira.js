@@ -22,14 +22,19 @@ export default async (jogador) => {
     "Você se encontra na entrada da Academia de Magia. A sua frente, há dois caminhos: um leva ao refeitório, onde pode conhecer outros aprendizes, e o outro leva ao seu quarto, onde pode descansar e se preparar para as aulas.\n"
   );
 
-  let escolha = "";
-  while (!escolha) {
-    escolha = readline
-      .question("Voce deseja ir para o 'refeitorio' ou para o 'quarto'? ")
-      .toLowerCase();
+  let escolha = 0;
+  while (escolha !== 1 && escolha !== 2) {
+    escolha = parseInt(
+      readline.question("Deseja ir ao refeitorio (1) ou ao seu quarto (2)?\n")
+    );
+    if (escolha !== 1 && escolha !== 2) {
+      await digitarMensagem(
+        "\nOpção inválida.\n"
+      );
+    }
   }
 
-  if (escolha === "refeitorio") {
+  if (escolha === 1) {
     await digitarMensagem(
       `${jogadorNome} decide ir ao refeitorio. Ao entrar, é recebido por um ambiente vibrante e acolhedor, onde vários aprendizes estão conversando e se conhecendo.\n`
     );
@@ -48,19 +53,19 @@ export default async (jogador) => {
     await digitarMensagem(
       `Depois de muita conversa, ${jogadorNome} e Ethan acabam por ir para seus respectivos dormitórios.\nÉ um lugar confortável e agradação para descansar e relaxar.\n`
     );
-    jogador.adicionarPersonalidade("sociavel")
-    return
-  } else if (escolha === "quarto") {
+    jogador.adicionarPersonalidade("sociavel");
+    return;
+  } else if (escolha === 2) {
     await digitarMensagem(
       `${jogadorNome} decide ir para o seu quarto. Ao entrar, encontra um espaço tranquilo e confortável, perfeito para descansar e refletir sobre a jornada que está por vir.\n`
     );
     continuarTexto();
 
     await digitarMensagem(
-      `Depois de organizar as suas coisas e arrumar o quarto, ${jogadorNome}pode descansar e se preparar para o seu novo desafio:\n
+      `Depois de organizar as suas coisas e arrumar o quarto, ${jogadorNome} pode descansar e se preparar para o seu novo desafio:\n
       se tornar um dos maiores feiticeiros do reino.\n`
     );
-    jogador.adicionarPersonalidade("reflexivo")
-    return
+    jogador.adicionarPersonalidade("reflexivo");
+    return;
   }
 };

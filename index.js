@@ -4,7 +4,7 @@ import PrimeiraFase from "./fases/Primeira.js";
 import SegundaFase from "./fases/Segunda.js";
 import TeceiraFase from "./fases/Terceira.js";
 
-import { introducao, digitarMensagem } from "./utilidades/utils.js";
+import { introducao, digitarMensagem, escolherProva } from "./utilidades/utils.js";
 import { useMontarProvas } from "./utilidades/hookProvas.js";
 
 const { agua, terra, ar, fogo, Prova } = useMontarProvas();
@@ -39,10 +39,10 @@ async function iniciarJogo() {
     `Após termina suas provas, ${mainCharacter.nome} é abordado por Gandor, o Mestre dos Elementos, que o faz a seguinte pergunta:`
   );
   const escolha = readline.question(
-    `\nHa alguma prova que você queira fazer para adquirir mais experiencia? ('s' ou 'n')\n`
+    `\nHa alguma prova que voce queira fazer para adquirir mais experiencia? ('s' ou 'n')\n`
   );
   if (escolha.toLowerCase() === "s") {
-    await escolherProva(jogador, provas);
+    await escolherProva(mainCharacter, provas);
   }
 
   // Finalizar o jogo
@@ -50,8 +50,10 @@ async function iniciarJogo() {
     `\nApós uma longa jornada de teino, ${mainCharacter.nome} chega ao seu dormitório.\nObrigado por jogar!\n`
   );
 
+  mainCharacter.mostrarStatus();
+
   await digitarMensagem(
-    "Crédito: Lucas Fernandes - 2024\ngithub.com/Lucascfer/",
+    "\nCrédito: Lucas Fernandes - 2024\ngithub.com/Lucascfer/",
     50
   );
   process.exit();

@@ -4,12 +4,10 @@ import { digitarMensagem, continuarTexto } from "../utilidades/utils.js";
 // fase que vai ser entre os dias 2 e 3 para determinar uma personalidade chave para o dia 3
 export default async (jogador) => {
   const { nome: jogadorNome } = jogador;
-  console.clear();
 
   await digitarMensagem(
     `No caminho de volta para a Academia após um dia de treino, ${jogadorNome} encontra dois colegas brigando. A situação parece tensa e você sente que precisa decidir se vai intervir ou não.`
   );
-  continuarTexto();
 
   let escolhaValida = false;
 
